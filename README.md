@@ -5,3 +5,11 @@ This data comes from pilot studies I have completed for my MSc project. I am wor
 
 Previously I was running 12hour experiments and breaking up the data into smaller chunks for analysis, so I will try to repeat this process in R. I am trying to optimize my experimental design by reducing the duration of the study, but there is a tradeoff between the amount of data collected (experiment length) and the variability in temperature preference. So I compared larger experiments (12hour) to shorter ones (2hour) by subsetting the data. 
 
+
+Week 2 Assignment: 
+
+I essentially plan on using all of the data output by Shuttlesoft to calculate a single value: temperature preference. I may involve other variables in a linear regression later on (if a relationship is found), but I am more concerned about comparing average temperature preference between treatment groups rather than investigating the cause of any difference. I will be testing developmental treatments with my experiment, so the conditions I am exposing the fish to in the shuttle box isn't really the "treatment" but more of a behavioral assay to assess temperature preference. 
+
+So right now I am simply looking at comparing means (of temperature preference) between 3 treatment groups (n=30). Each fish will produce a .txt file that will be summarized in a temperature preference valule (in R). One R script will be used for cleaning/prepping the .txt files, mean temperature preference and associated variation calculated from the .txt files will be stored in a separate csv. Since my data is repeated measures from a single individual over time, it is essentailly pseudoreplication. Because of this I am having a little difficulty describing and comparing the variability (its not technically error) between treatment groups, which will be the bulk of my analysis. I need a way to compare the variability observed between trails (between fish) and the variation in the occupied temperature during a single trial (within fish) to get a better handle on the spread of the data. 
+
+I think I am going to talk to my supervisor and try to get another dataset to use for the class. I like using my own, but there are only a few specific things that I want to do to it.. which is giving me a bit of tunnel vision. I think a new dataset that requires more manipulation and analysis might be better for this course. 
