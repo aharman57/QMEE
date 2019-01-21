@@ -2,6 +2,7 @@
 ## BMB: oh well.
 ## Tried to add a pipe, but struggled without my notes ##
 ## BMB: did the lecture notes help? Also, there are *lots* of references about the tidyverse, introductions etc etc, on the web ...
+## JD: Removed space from this file name
 
 library(tidyverse)
 library(readr)
