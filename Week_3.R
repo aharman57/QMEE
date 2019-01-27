@@ -1,6 +1,8 @@
 library(tidyverse)
 library(ggplot2)
 
+## JD: Sorry to move; spaces in filenames make me crazy
+
 load(file="new_data_cleaning1.Rdata") ## loads script from last assignment 
 
 g1 <- ggplot(data_pref,aes(x=Time,y=Tobj))+
