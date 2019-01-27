@@ -23,6 +23,7 @@ plot(Time, Tpref) ## more or less what the plot should look like
 ## JD: This is the right idea, but …
 ## it would be cooler to do this with select, and save just one tibble
 save(Tobj,Tpref,Time,file="new_data_cleaning1.Rdata")
+## JD: Also, it's a tiny bit better to _not_ commit things the computer makes (unless there's a specific reason)
 
 ## JD: Not really clear that much cleaning or validation has gone on here
 ## JD: score 2. (1=poor, 2=fine, 3=excellent)
