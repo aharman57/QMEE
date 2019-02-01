@@ -1,0 +1,19 @@
+Week 4 - Question 2
+
+Hypothesis: Lake Whitefish embryos incubated at elevated temperatures (5°C, 8°C) will display an altered temperature preference post-hatch compared to the control treatment (2°C).
+
+I recently presented at Datalunch, and changed a lot of the analyses I was previously doing. I have completed several pilot studies so far, but none that actually compare treatment groups like I will in my final study. That being said I have still (poorly) attempted to compare temperature preference between groups.
+
+Some of the things I learned at Datalunch:
+
+- median is non-parametric- isn't related to SD 
+    - therefore I should never combine with SD, doesn't make sense
+- T-tests producing high P-values don't help me at all 
+    - and I shouldn't use them to infer "significant difference"
+- could instead decide on what constitutes "close enough" within a numerical range
+    - but still need some kind of "test" to confirm whether its close enough... I would rather not just make it a ambiguous choice (unless there was some kind of strong biological justification)
+- should instead decide on a "golden standard" Tpref that I compare all values to (control treatment)
+- instead of comparing absolute Tpref between treatments, I should be comparing the variation from the "golden standard" (because I don't actually care what the temperature is, but just the difference between groups)
+- I should try using a sliding window for calculating Tpref and see how that affects the data -- accumulation over 2 hours is maybe not what I am looking for?
+- box plots for individual fish will help show variation without needing to talk about SD or SE 
+

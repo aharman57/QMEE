@@ -1,0 +1,21 @@
+Week 4 - MMV Question + Assignment 
+
+PART 1
+
+I used Baye's Theorem to answer the first part of question 1. The probability of an individual having the virus is 0.01 (1%), the probability of a positive test given the individual has the virus is 1.0 (100%), and the probability of a positive test given the individual does NOT have the virus is 0.05 (5%). These values can be plugged into Baye's Theorem, which will calculate the probability of the individual having the virus, given a positive result. 
+
++ = positive result
+V = has virus
+X = no virus
+
+P(V|+) = P(+|V)P(V)/(P(+|V)P(V) + P(+|X)P(X))
+P(V|+) = 0.168
+P(V|+) = 16.8 %
+
+This means that if a random individul from this population is selected and received a positive rapid MMV test, there is a 16.8% chance the individual actually has the virus. 
+
+
+PART 2
+
+A bayesian statistician would ask "what are my prior assumptions about the data?", increasing statistical power by making assumptions about the data prior to analysis. While there is not a whole lot of prior information given about this population/dataset, there is something intrinsically different about randomly testing a population and "self-testing". Without any previous assumptions, it is extremely unlikely that my friend would randomly get a rapid MMV test as part of his monthly or annual medical routine. This individual isn't "exploring" his health by subjecting himself to every medical procedure available, but rather is "confirming" his previous assumption that he is infected with MMV. The symptoms of MMV are "uncontrollably making mathematical models", which would likely be obvious to someone experiencing them. Therefore my friend assumed that he was infected with MMV based on his observations of his own behavior, and decided to confirm his assumptions by taking the rapid MMV test. Since I like to think in analogies, I compared it to the idea of taking a pregnancy test. The government of Canada doesn't regularly distribute pregnancy tests to do a census of pregnancy in Canada, but rather women who believe they are pregnant will buy and use the test. Therefore people tend to believe in the results of the test, even though the false-positive rate is probably higher than 5%. So I would tell my friend to trust the results of his rapid test, as the probability of having the virus is no longer 1% (if we are only considering my friend), and therefore the probability of a correct positive result is much higher than 16.8%.  
+
