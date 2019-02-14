@@ -2,6 +2,8 @@ Week 4 - Question 2
 
 Hypothesis: Lake Whitefish embryos incubated at elevated temperatures (5°C, 8°C) will display an altered temperature preference post-hatch compared to the control treatment (2°C).
 
+## JD: we should prefer directional hypotheses.
+
 I recently presented at Datalunch, and changed a lot of the analyses I was previously doing. I have completed several pilot studies so far, but none that actually compare treatment groups like I will in my final study. That being said I have still (poorly) attempted to compare temperature preference between groups.
 
 Some of the things I learned at Datalunch:
@@ -17,3 +19,4 @@ Some of the things I learned at Datalunch:
 - I should try using a sliding window for calculating Tpref and see how that affects the data -- accumulation over 2 hours is maybe not what I am looking for?
 - box plots for individual fish will help show variation without needing to talk about SD or SE 
 
+## JD Nice discussion of science, but I'm missing the abstraction to simple statistical philosophy. Week grade: Good (2/3)
