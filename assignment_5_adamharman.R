@@ -3,6 +3,8 @@ library(tidyverse)
 data <- read_csv(file="Morph_Data.csv")
 
 colnames(data)[1] <- "Age"
+## BMB: rename(data,Age="Age (dph)") would be a little better
+
 
 set.seed(101)
 nsim <- 1000
@@ -55,3 +57,7 @@ abline(v=obs,col="red")
 ## I tried a few different ways, but this is definitely a roadblock since the examples in class were very simple compared to this
 ## I think I would need the permutation to spit out the means of all three treatments into a separate table, and analyze them in a separate step
 ## That way instead of getting a distribution of "test statistics" I would get 3 different mean distributions
+
+## BMB: you need to do something like compute the sum of squared differences among groups (or the F statistic, or the sum of absolute values of differences among medians ...)  See  https://mac-theobio.github.io/QMEE/lizards_perm.R
+
+## BMB score: 2
