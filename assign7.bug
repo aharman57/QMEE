@@ -1,0 +1,11 @@
+model {
+	for (i in 1:N){
+		y[i] ~ dnorm(pred[i], tau)
+		pred[i] <- ma*a[i] + mb*b[i] + mc*c[i] + int
+	}
+	ma ~ dnorm(0,0.001)
+	mb ~ dnorm(0,0.001)
+	mc ~ dnorm(0,0.001)
+	int ~ dnorm(0,0.001)
+	tau ~ dgamma(0.001,0.001)
+}
