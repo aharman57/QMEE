@@ -1,3 +1,4 @@
+## BMB: do you actually use all of these?
 library("arm")
 library("R2jags")
 library("coda")
@@ -10,13 +11,21 @@ library("broom.mixed")
 library("ggplot2"); theme_set(theme_bw())
 library("tidyverse")
 
-data <- read_csv(file="Morph_Data.csv")
-
-colnames(data)[1] <- "Age"
-colnames(data)[4] <- "Eye"
-colnames(data)[6] <- "Fin"
-colnames(data)[8] <- "Yolk"
-colnames(data)[11] <- "Jaw"
+## BMB: please don't call data 'data'
+data <- (read_csv(file="Morph_Data.csv")
+    %>% rename(Age="Age (dph)",
+               Eye="Eye diameter",
+               Fin="Fin indent",
+               Yolk="Yolk weight",
+               Jaw="Jaw Gape")
+)
+## BMB: use rename().  renaming by column is unsafe. What if data format
+## changes in the future? 
+## colnames(data)[1] <- "Age"
+## colnames(data)[4] <- "Eye"
+## colnames(data)[6] <- "Fin"
+## colnames(data)[8] <- "Yolk"
+## colnames(data)[11] <- "Jaw"
 
 jags.data <- select(data,Age,Treatment,Length,Eye)
 jags.params <- c("ma","mb","mc","int")
@@ -30,6 +39,8 @@ c <- jags.data$Eye
 ### I tried to change the distribution of my Age coefficient to gamma (only positive) as I am confident that the fish aren't shrinking as they age but the model wouldn't run..
 ### Does that make sense? Or should I have put in a positive mean? Still could have the distribution going beyond 0
 
+## BMB: good thoughts.  Maybe the simplest thing is to model on the log scale. log(Length) means length will never go negative.  Modeling log(increment) would mean you never had negative increments ... (if you make log(increment) Normal, that's equivalent to assuming log-Normal increments ...)
+
 jags1 <- jags(model.file='assign7.bug',
               parameters=c("ma","mb","mc","int"),
               data = list('a'=a, 'b'=b, 'c'=c, 'N'=N, 'y'=y),
@@ -39,11 +50,18 @@ plot(jags1)
 
 #### Ran lm to get an estimate of parameters for priors... seemed like a good idea
 ## Ideally, should I have used an independent dataset / different study to generate these????
+
+## BMB: yeah, this seems like a good idea, but it's not -- it's double-dipping.
+
+
 #### Made a new .bug file with a new set of prior assumptions 
 summary(lm(y~a+b+c,data=jags.data))
 
+## BMB: don't need to make a new .bug file - you can pass prior information
+## in with the data
+
 #### plugged in coefficient values, reduced the coefficient variation
-#### coverted standard error values given in the lm estimates summary -- not quite sure if this makes sense, but couldn't think of another way to get variance
+#### converted standard error values given in the lm estimates summary -- not quite sure if this makes sense, but couldn't think of another way to get variance
 
 jags2 <- jags(model.file='bayes.bug',
               parameters=c("ma","mb","mc","int"),
