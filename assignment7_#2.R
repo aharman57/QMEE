@@ -1,3 +1,6 @@
+## BMB: I won't move it now, to avoid confusion, but best *not* to use
+## special characters like '#' in file names when coding ...
+
 ## BMB: do you actually use all of these?
 library("arm")
 library("R2jags")
@@ -63,6 +66,9 @@ summary(lm(y~a+b+c,data=jags.data))
 #### plugged in coefficient values, reduced the coefficient variation
 #### converted standard error values given in the lm estimates summary -- not quite sure if this makes sense, but couldn't think of another way to get variance
 
+## BMB: nice try, that doesn't make sense.  It's double-dipping
+## You need to use *independent* prior information/data, if you're going to try
+## to specify an informative prior
 jags2 <- jags(model.file='bayes.bug',
               parameters=c("ma","mb","mc","int"),
               data = list('a'=a, 'b'=b, 'c'=c, 'N'=N, 'y'=y),
@@ -120,3 +126,4 @@ mean(mmL2[,"int"]<6)
 ### adding priors seemed to condense the distribution of the coefficient, which would provide a more accurate estimate ASSUMING that my priors make sense (I think they do?)
 ### this was hard to visualize or pick out before doing this last step... it seemed like the priors didn't do much by just looking at the histograms
 
+## BMB: score 2.5
