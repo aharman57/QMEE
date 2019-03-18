@@ -1,6 +1,10 @@
 library(tidyverse)
 
 data <- read_csv(file="Morph_Data.csv")
+
+## JD: Dangerous code; what if your data file structure changes
+## Better to rename by name (use dplyr::rename, I think)
+## Or to edit the input file to make names that are complete but succinct
 colnames(data)[1] <- "Age"
 colnames(data)[4] <- "Eye"
 colnames(data)[6] <- "Fin"
@@ -12,6 +16,7 @@ lm_data <- select(data,Length,Age,Treatment)
 lm1 <- lm(Length~Age*Treatment,data=lm_data)
 summary(lm1)
 
+## JD: Why are you messing with margins?
 par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(lm1, which=1:4)
 
@@ -20,7 +25,9 @@ plot(lm1, which=1:4)
 ## Q-Q plot assesses normality of the data by plotting "quantiles" against each other -- the more linear the relationship the better the "fit"
 ## Scale location tests if the residuals are distributed evenly between predictors - which essentially tests for Heteroscedasticity -- the flatter the line the more similar the variance
 ## Cooks distance looks at the relative influence of a single data point on the regression -- cooks distance < 0.05 is acceptable 
+
 ## I'm not sure why my cooks distance is a histogram, but it communicates the same information
+## JD: Yeah. WTH??
 
 
 ####################### More variables
@@ -28,6 +35,7 @@ plot(lm1, which=1:4)
 lm2 <- lm(Length~Age*Treatment*Eye*Yolk,data=data)
 summary(lm2)
 
+## Not necessary (nor good) to repeat this.
 par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(lm2, which=1:4)
 
@@ -84,6 +92,8 @@ plot(lm6, which=1:4)
 
 ### Would it make sense to pick and chose specific interaction terms that I think should be relevant instead of looking at all of them? LOTS of terms for 6 predictors 
 ### Does it make more sense to include all of the measured variables in the model??? You mentioned before that we shouldn't remove variables because of a low p-value (relationship is unclear)
+### JD: We recommend that you should figure out how many predictors you think your data can support, then decide scientifically which interaction terms are important to include and try to stick with the decision
+### … journal as you go and explain what changes if any you decide to make.
 
 lm7 <- lm(Length~Age,data=data)
 summary(lm7)
@@ -94,3 +104,5 @@ lm8 <- lm(Length~Treatment,data=data)
 summary(lm8)
 par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(lm8, which=1:4)
+
+## JD: No inferential plot nor discussion about inference ☹

@@ -11,8 +11,3 @@ Do treatment groups significantly vary in size between years?
 Does the average size across all treatment groups change year to year?
 Is the growth rate consistent between treatment groups? Between years?
 
-
-
-
-
-
