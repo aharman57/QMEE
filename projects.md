@@ -1,4 +1,4 @@
-Fitting a linear model to morphological data
+## Fitting a linear model to morphological data
 
 My dataset consists of a response (Length), and 9 predictor variables that are all morphological measurements of Lake Whitefish hatchlings. This is only 1 year of the dataset, so if my project is chosen I will acquire several more years of data. All the predictor variables are correlated, as they all come from the same individual. As the fish grows, so do all the other body features that we measure (except the yolk, which diminishes). A simple linear model won't account for the fact that these variables are co-related, so I want to be able to fit a model that accounts for the correlations. 
 
