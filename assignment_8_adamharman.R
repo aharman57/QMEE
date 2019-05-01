@@ -17,9 +17,10 @@ summary(glm_1)
 par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(glm_1, which=1:4)
 
-
 glm1 <- glm(family=poisson(),Length~Age+Treatment,data=glm_data)
 ### getting a lot of warning messages, doesn't like non-integers... but it still works
+## JD: There is no reason you should be feeding non-integers to the poisson family.
+## Why are you doing it?
 
 glm2 <- glm(family=poisson(),Length~Age*Treatment,data=glm_data)
 ### added interactions
@@ -48,6 +49,7 @@ par(mfrow=c(2,2),mar=c(2,3,1.5,1),mgp=c(2,1,0))
 plot(glm5, which=1:4)
 ### best looking model, not sure if adding more variables is the right way to meet model assumptions
 
+## JD: The way to tell if you have a problem with overdispersion is to look at the dispersion (or the deviance per degree of freedom)
 
 summary(glm5)
 summary(glm4)
@@ -56,3 +58,7 @@ summary(glm2)
 summary(glm1)
 ### residual deviance / residual df = 0.022 - 0.038  <-- said it was supposed to be close to 1?
 ### but also said only values >1 were bad, didn't mention what <1 meant 
+
+### JD: In this case it means that you are using a continuous response variable ☺.
+
+## Grade 1.8/3 OK
