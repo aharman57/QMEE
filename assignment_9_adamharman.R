@@ -10,25 +10,35 @@ Morph <- (read_csv(file="Morph_Data.csv")
 )
 
 lmm_data <- select(Morph,Length,Age,Treatment)
-lmm_data$Fish_ID <- 1:nrow(lmm_data)
-#lmm_data2 <- tibble::rowid_to_column(lmm_data, "Fish_ID") ## tried a different way of creating an ID column, didn't help
+## lmm_data$Fish_ID <- 1:nrow(lmm_data)
+lmm_data2 <- tibble::rowid_to_column(lmm_data, "Fish_ID") ## tried a different way of creating an ID column, didn't help
+## BMB ?? this command seems to work for me??
+## or do you mean that the FishID variable you're constructing doesn't
+## work in the mixed model?
+## if the fish measurements are terminal -- you measure each fish only
+## once -- this isn't a good context for a mixed model (which are closely
+## related to *repeated measures* models ... if you don't have repeated
+## measurements of some sort it doesn't make sense to use a MM)
 
 ### Not sure if the variables I am using make sense for random effects, since I care about which treatments and which age classes influence length ###
 
 ## tried adding a "Fish_ID" column to use as a grouping variable, but couldn't get it to work
 ## keep getting this error "Error: number of levels of each grouping factor must be < number of observations"
-# the columns are the same length, so I don't know how to make the Fish_ID column smaller than the total observations??.. subject # was used as a grouping factor in the example as well as several examples I looked at online... is it because of the way I am adding the column??
+## the columns are the same length, so I don't know how to make the Fish_ID column smaller than the total observations??.. subject # was used as a grouping factor in the example as well as several examples I looked at online... is it because of the way I am adding the column??
 
-lmm1 <- lmList(Length~Age|Fish_ID, data=lmm_data) ### not sure what this is showing ###
+o
+lmm1 <- lmList(Length~Age|Fish_ID, data=lmm_data2) ### not sure what this is showing ### BMB: it's showing that you can't fit a linear regression to a single point per fish!
 lmm1_2 <- lmer(Length~Age+(Treatment|Fish_ID),data=lmm_data2)
 
 lmm2 <- lmer(Length~Age+(1|Treatment),data=lmm_data) ### Age is fixed effect, and Intercept varies between treatment groups (random effect) ###
+## BMB: doesn't make sense -- Treatment levels aren't exchangeable
 
 lmm3 <- lmer(Length~Age+(Age|Treatment),data=lmm_data) ### Age is fixed effect, and intercept and slope are random effects - Age varies between treatment groups?? is that the right interpretation? ###
 ### singular fit, too complicated of a model for the amount of data? ###
 ### This is the maximum model?? ### 
 lmm3_2 <- lmer(Length~Treatment+(Treatment|Age),data=lmm_data)
-### singluar fit... ### This makes the most sense, as I am primarily looking for the effect of temperature treatment on size
+### singular fit... ### This makes the most sense, as I am primarily looking for the effect of temperature treatment on size
+## BMB: also doesn't make sense to use Age as a RE -- not exchangeable.
 ### If I interpret it like: treatment is a random effect within age groups, it doesn't make sense... All treatment groups had the same age and grew over the course of the study
 lmm3_3 <- lmer(Length~Age+Treatment+(Age|Treatment)+(Treatment|Age),data=lmm_data)
 
